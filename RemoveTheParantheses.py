@@ -18,19 +18,10 @@ The parentheses can be nested.
 def remove_parentheses(s):
     result = ''
     a = 0
-    start = 0
-    for i in range(len(s)):
-        if s[i] == '(':
-            a += 1
-            continue
-        elif s[i] == ')':
-            if a == 0: continue
-            a -=1
-            if a >= 1: start = i+1
-            continue
-        if a == 0: result += s[i]
-    if a >= 1: result += s[start:]
-    if result == '': return '  '
+    for i in s:
+        if i == '(': a += 1
+        elif i == ')': a -=1
+        elif a == 0: result += i
     return result
             
 
