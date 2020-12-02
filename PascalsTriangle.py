@@ -38,3 +38,22 @@ def pascals_triangle(n):
     return a
 
 print(pascals_triangle(5))
+
+
+
+# *************************************************************************************
+
+# this version return a nested array
+
+def pascal(n):
+    a, temp, temp2 = [[1]], [1], [1]
+    for i in range(1,n):
+        for j in range(len(temp)):
+            try:temp2.insert(j+1,temp[j] + temp[j+1])
+            except: temp2.append(1)
+        temp = temp2
+        a.append(temp2)
+        temp2 = [1]
+
+    return a
+
