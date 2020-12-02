@@ -14,7 +14,6 @@ with open('source.c','r+', encoding='utf-8') as file:
     for i in file:
         stack.push(i.rstrip('\n'))
 
-
 data = ''
 spaceCount = 0
 space = ''
@@ -32,14 +31,7 @@ for i in range(0,len(stack._data)):
         spaceCount = spaceCount + 1
         space = '\t' * spaceCount
         
-
 with open('target.c', 'w') as file:
     file.write(data)
 
 stack.reverse_file('source.c')   
-
-
- 
-
-      
- 
