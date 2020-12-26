@@ -20,14 +20,13 @@ Help
 '''
 
 class RomanNumerals():
+    @classmethod
     def to_roman(self,num):
         romans = {1:'I', 5:'V', 10:'X',  50:'L',  100:'C', 500:'D', 1000:'M'}
         result = []
         if num in romans: return romans[num]
         else:
-            x = ['1']
-            [x.append('0') for i in range(len(str(num))-1)]
-            x = int(''.join(x))
+            x = int('1'+'0' * (len(str(num))-1))
             for i in range(len(str(num))):
                 if 1 <= num//x <=3: [result.append(romans[1*x]) for i in range(num//x)]
                 elif num//x == 4:
@@ -42,9 +41,21 @@ class RomanNumerals():
                     result.append(romans[1*x*10])
                 if  x != 1:
                     num = num - num//x*x
-                    print(num,x)
                     x = int(str(x)[:-1])
             return ''.join(result)
-
-r1 = RomanNumerals()
-print(r1.to_roman(2020))
+    @classmethod
+    def from_roman(self,roman):
+        nums = {'I':1, 'V':5, 'X':10,  'L':50,  'C':100, 'D':500, 'M':1000}
+        result = 0
+        for index, i in enumerate(roman):
+            if index == len(roman)-1:
+                result += nums[i]
+            elif nums[i] < nums[roman[index + 1]]:
+                result -= nums[i]
+            else:
+                result += nums[i]
+        return result
+            
+         
+print(RomanNumerals.to_roman(2020))
+print(RomanNumerals.from_roman('MMXX'))
